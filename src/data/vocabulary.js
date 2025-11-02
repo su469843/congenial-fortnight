@@ -1,3 +1,8 @@
+// 词汇数据访问层 - 基于数据库实现
+import { wordDAO } from '@/db/daos.js'
+import { GRADE_LEVELS } from '@/db/models.js'
+
+// 预定义词书结构
 export const vocabularyBooks = {
   primary: {
     id: 1,
@@ -5,159 +10,8 @@ export const vocabularyBooks = {
     level: 'primary',
     description: '适合小学生的基础英语词汇',
     totalWords: 200,
-    words: [
-      // 食物类
-      {
-        id: 1,
-        word: 'apple',
-        meaning: '苹果',
-        phonetic: '/ˈæpəl/',
-        partOfSpeech: 'n.',
-        example: 'I eat an apple every day.',
-        difficulty: 1
-      },
-      {
-        id: 2,
-        word: 'banana',
-        meaning: '香蕉',
-        phonetic: '/bəˈnænə/',
-        partOfSpeech: 'n.',
-        example: 'Monkeys like bananas.',
-        difficulty: 1
-      },
-      {
-        id: 3,
-        word: 'orange',
-        meaning: '橙子',
-        phonetic: '/ˈɔːrɪndʒ/',
-        partOfSpeech: 'n.',
-        example: 'This orange is very sweet.',
-        difficulty: 1
-      },
-      {
-        id: 4,
-        word: 'milk',
-        meaning: '牛奶',
-        phonetic: '/mɪlk/',
-        partOfSpeech: 'n.',
-        example: 'I drink milk for breakfast.',
-        difficulty: 1
-      },
-      
-      // 动物类
-      {
-        id: 5,
-        word: 'cat',
-        meaning: '猫',
-        phonetic: '/kæt/',
-        partOfSpeech: 'n.',
-        example: 'The cat is sleeping.',
-        difficulty: 1
-      },
-      {
-        id: 6,
-        word: 'dog',
-        meaning: '狗',
-        phonetic: '/dɔːɡ/',
-        partOfSpeech: 'n.',
-        example: 'My dog is very friendly.',
-        difficulty: 1
-      },
-      {
-        id: 7,
-        word: 'bird',
-        meaning: '鸟',
-        phonetic: '/bɜːrd/',
-        partOfSpeech: 'n.',
-        example: 'The bird is singing beautifully.',
-        difficulty: 1
-      },
-      {
-        id: 8,
-        word: 'fish',
-        meaning: '鱼',
-        phonetic: '/fɪʃ/',
-        partOfSpeech: 'n.',
-        example: 'I saw many fish in the pond.',
-        difficulty: 1
-      },
-
-      // 颜色
-      {
-        id: 9,
-        word: 'red',
-        meaning: '红色',
-        phonetic: '/red/',
-        partOfSpeech: 'adj.',
-        example: 'The apple is red.',
-        difficulty: 1
-      },
-      {
-        id: 10,
-        word: 'blue',
-        meaning: '蓝色',
-        phonetic: '/bluː/',
-        partOfSpeech: 'adj.',
-        example: 'The sky is blue today.',
-        difficulty: 1
-      },
-      {
-        id: 11,
-        word: 'green',
-        meaning: '绿色',
-        phonetic: '/ɡriːn/',
-        partOfSpeech: 'adj.',
-        example: 'Grass is green.',
-        difficulty: 1
-      },
-      {
-        id: 12,
-        word: 'yellow',
-        meaning: '黄色',
-        phonetic: '/ˈjeloʊ/',
-        partOfSpeech: 'adj.',
-        example: 'The sun is yellow.',
-        difficulty: 1
-      },
-
-      // 家庭
-      {
-        id: 13,
-        word: 'father',
-        meaning: '父亲',
-        phonetic: '/ˈfɑːðər/',
-        partOfSpeech: 'n.',
-        example: 'My father works in an office.',
-        difficulty: 1
-      },
-      {
-        id: 14,
-        word: 'mother',
-        meaning: '母亲',
-        phonetic: '/ˈmʌðər/',
-        partOfSpeech: 'n.',
-        example: 'My mother cooks delicious food.',
-        difficulty: 1
-      },
-      {
-        id: 15,
-        word: 'brother',
-        meaning: '兄弟',
-        phonetic: '/ˈbrʌðər/',
-        partOfSpeech: 'n.',
-        example: 'I have an older brother.',
-        difficulty: 1
-      },
-      {
-        id: 16,
-        word: 'sister',
-        meaning: '姐妹',
-        phonetic: '/ˈsɪstər/',
-        partOfSpeech: 'n.',
-        example: 'My sister is very smart.',
-        difficulty: 1
-      }
-    ]
+    gradeLevel: GRADE_LEVELS.PRIMARY,
+    words: []
   },
   junior: {
     id: 2,
@@ -165,53 +19,8 @@ export const vocabularyBooks = {
     level: 'junior',
     description: '适合初中生的中级英语词汇',
     totalWords: 150,
-    words: [
-      {
-        id: 101,
-        word: 'achievement',
-        meaning: '成就',
-        phonetic: '/əˈtʃiːvmənt/',
-        partOfSpeech: 'n.',
-        example: 'Graduating from university was a great achievement.',
-        difficulty: 3
-      },
-      {
-        id: 102,
-        word: 'beautiful',
-        meaning: '美丽的',
-        phonetic: '/ˈbjuːtɪfəl/',
-        partOfSpeech: 'adj.',
-        example: 'The sunset is beautiful tonight.',
-        difficulty: 2
-      },
-      {
-        id: 103,
-        word: 'develop',
-        meaning: '发展',
-        phonetic: '/dɪˈveləp/',
-        partOfSpeech: 'v.',
-        example: 'Children develop quickly.',
-        difficulty: 3
-      },
-      {
-        id: 104,
-        word: 'environment',
-        meaning: '环境',
-        phonetic: '/ɪnˈvaɪrənmənt/',
-        partOfSpeech: 'n.',
-        example: 'We need to protect our environment.',
-        difficulty: 3
-      },
-      {
-        id: 105,
-        word: 'fantastic',
-        meaning: '极好的',
-        phonetic: '/fænˈtæstɪk/',
-        partOfSpeech: 'adj.',
-        example: 'The movie was fantastic!',
-        difficulty: 2
-      }
-    ]
+    gradeLevel: GRADE_LEVELS.JUNIOR,
+    words: []
   },
   senior: {
     id: 3,
@@ -219,128 +28,316 @@ export const vocabularyBooks = {
     level: 'senior',
     description: '适合高中生的高级英语词汇',
     totalWords: 300,
-    words: [
+    gradeLevel: GRADE_LEVELS.SENIOR,
+    words: []
+  }
+}
+
+// 获取指定级别的单词
+export const getWordsByLevel = async (level) => {
+  try {
+    const book = vocabularyBooks[level]
+    if (!book) return []
+    
+    const words = await wordDAO.findByGradeLevel(book.gradeLevel)
+    return words.map(word => convertWordToLegacyFormat(word))
+  } catch (error) {
+    console.error('获取级别单词失败:', error)
+    return []
+  }
+}
+
+// 获取指定ID的单词
+export const getWordById = async (wordId) => {
+  try {
+    const word = await wordDAO.findById(parseInt(wordId))
+    return word ? convertWordToLegacyFormat(word) : null
+  } catch (error) {
+    console.error('获取单词失败:', error)
+    return null
+  }
+}
+
+// 获取所有单词
+export const getAllWords = async () => {
+  try {
+    const words = await wordDAO.findAll()
+    return words.map(word => convertWordToLegacyFormat(word))
+  } catch (error) {
+    console.error('获取所有单词失败:', error)
+    return []
+  }
+}
+
+// 根据难度范围获取单词
+export const getWordsByDifficulty = async (minDifficulty, maxDifficulty) => {
+  try {
+    const allWords = await getAllWords()
+    return allWords.filter(word => 
+      word.difficulty >= minDifficulty && word.difficulty <= maxDifficulty
+    )
+  } catch (error) {
+    console.error('按难度获取单词失败:', error)
+    return []
+  }
+}
+
+// 获取指定词书的所有单词（兼容原有API）
+export const getWordsByBookId = async (bookId) => {
+  try {
+    const level = getBookLevelById(bookId)
+    return await getWordsByLevel(level)
+  } catch (error) {
+    console.error('获取词书单词失败:', error)
+    return []
+  }
+}
+
+// 根据词书ID获取级别
+const getBookLevelById = (bookId) => {
+  const levelMap = {
+    1: 'primary',
+    2: 'junior', 
+    3: 'senior'
+  }
+  return levelMap[bookId] || 'primary'
+}
+
+// 转换数据库单词格式为原有格式
+const convertWordToLegacyFormat = (word) => {
+  return {
+    id: word.word_id,
+    word: word.word,
+    meaning: word.meaning,
+    phonetic: word.phonetic || '',
+    partOfSpeech: '', // 原数据中没有此字段
+    example: word.example_sentence || '',
+    difficulty: calculateDifficulty(word.grade_level)
+  }
+}
+
+// 根据年级计算难度
+const calculateDifficulty = (gradeLevel) => {
+  switch (gradeLevel) {
+    case GRADE_LEVELS.PRIMARY:
+      return 1
+    case GRADE_LEVELS.JUNIOR:
+      return 3
+    case GRADE_LEVELS.SENIOR:
+      return 4
+    default:
+      return 1
+  }
+}
+
+// 初始化词汇数据（从原有数据迁移到数据库）
+export const initializeVocabularyData = async () => {
+  try {
+    // 检查是否已有数据
+    const existingWords = await wordDAO.findAll()
+    if (existingWords.length > 0) {
+      console.log('数据库中已有词汇数据，跳过初始化')
+      return
+    }
+
+    // 原有的词汇数据
+    const legacyWords = [
+      // 小学词汇
       {
-        id: 201,
+        word: 'apple',
+        meaning: '苹果',
+        phonetic: '/ˈæpəl/',
+        example_sentence: 'I eat an apple every day.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'banana',
+        meaning: '香蕉',
+        phonetic: '/bəˈnænə/',
+        example_sentence: 'Monkeys like bananas.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'orange',
+        meaning: '橙子',
+        phonetic: '/ˈɔːrɪndʒ/',
+        example_sentence: 'This orange is very sweet.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'milk',
+        meaning: '牛奶',
+        phonetic: '/mɪlk/',
+        example_sentence: 'I drink milk for breakfast.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'cat',
+        meaning: '猫',
+        phonetic: '/kæt/',
+        example_sentence: 'The cat is sleeping.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'dog',
+        meaning: '狗',
+        phonetic: '/dɔːɡ/',
+        example_sentence: 'My dog is very friendly.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'bird',
+        meaning: '鸟',
+        phonetic: '/bɜːrd/',
+        example_sentence: 'The bird is singing beautifully.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'fish',
+        meaning: '鱼',
+        phonetic: '/fɪʃ/',
+        example_sentence: 'I saw many fish in the pond.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'red',
+        meaning: '红色',
+        phonetic: '/red/',
+        example_sentence: 'The apple is red.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'blue',
+        meaning: '蓝色',
+        phonetic: '/bluː/',
+        example_sentence: 'The sky is blue today.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'green',
+        meaning: '绿色',
+        phonetic: '/ɡriːn/',
+        example_sentence: 'Grass is green.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'yellow',
+        meaning: '黄色',
+        phonetic: '/ˈjeloʊ/',
+        example_sentence: 'The sun is yellow.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'father',
+        meaning: '父亲',
+        phonetic: '/ˈfɑːðər/',
+        example_sentence: 'My father works in an office.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'mother',
+        meaning: '母亲',
+        phonetic: '/ˈmʌðər/',
+        example_sentence: 'My mother cooks delicious food.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'brother',
+        meaning: '兄弟',
+        phonetic: '/ˈbrʌðər/',
+        example_sentence: 'I have an older brother.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      {
+        word: 'sister',
+        meaning: '姐妹',
+        phonetic: '/ˈsɪstər/',
+        example_sentence: 'My sister is very smart.',
+        grade_level: GRADE_LEVELS.PRIMARY
+      },
+      // 初中词汇
+      {
+        word: 'achievement',
+        meaning: '成就',
+        phonetic: '/əˈtʃiːvmənt/',
+        example_sentence: 'Graduating from university was a great achievement.',
+        grade_level: GRADE_LEVELS.JUNIOR
+      },
+      {
+        word: 'beautiful',
+        meaning: '美丽的',
+        phonetic: '/ˈbjuːtɪfəl/',
+        example_sentence: 'The sunset is beautiful tonight.',
+        grade_level: GRADE_LEVELS.JUNIOR
+      },
+      {
+        word: 'develop',
+        meaning: '发展',
+        phonetic: '/dɪˈveləp/',
+        example_sentence: 'Children develop quickly.',
+        grade_level: GRADE_LEVELS.JUNIOR
+      },
+      {
+        word: 'environment',
+        meaning: '环境',
+        phonetic: '/ɪnˈvaɪrənmənt/',
+        example_sentence: 'We need to protect our environment.',
+        grade_level: GRADE_LEVELS.JUNIOR
+      },
+      {
+        word: 'fantastic',
+        meaning: '极好的',
+        phonetic: '/fænˈtæstɪk/',
+        example_sentence: 'The movie was fantastic!',
+        grade_level: GRADE_LEVELS.JUNIOR
+      },
+      // 高中词汇
+      {
         word: 'accommodate',
         meaning: '容纳；适应',
         phonetic: '/əˈkɑːmədeɪt/',
-        partOfSpeech: 'v.',
-        example: 'The hotel can accommodate 200 guests.',
-        difficulty: 4
+        example_sentence: 'The hotel can accommodate 200 guests.',
+        grade_level: GRADE_LEVELS.SENIOR
       },
       {
-        id: 202,
         word: 'comprehensive',
         meaning: '全面的',
         phonetic: '/ˌkɑːmprɪˈhensɪv/',
-        partOfSpeech: 'adj.',
-        example: 'We need a comprehensive solution.',
-        difficulty: 4
+        example_sentence: 'We need a comprehensive solution.',
+        grade_level: GRADE_LEVELS.SENIOR
       },
       {
-        id: 203,
         word: 'demonstrate',
         meaning: '证明；演示',
         phonetic: '/ˈdemənstreɪt/',
-        partOfSpeech: 'v.',
-        example: 'The teacher will demonstrate the experiment.',
-        difficulty: 4
+        example_sentence: 'The teacher will demonstrate the experiment.',
+        grade_level: GRADE_LEVELS.SENIOR
       },
       {
-        id: 204,
         word: 'illustrate',
         meaning: '说明；举例',
         phonetic: '/ˈɪləstreɪt/',
-        partOfSpeech: 'v.',
-        example: 'The diagram illustrates the process.',
-        difficulty: 4
+        example_sentence: 'The diagram illustrates the process.',
+        grade_level: GRADE_LEVELS.SENIOR
       },
       {
-        id: 205,
         word: 'predominant',
         meaning: '主要的；占主导地位的',
         phonetic: '/prɪˈdɑːmɪnənt/',
-        partOfSpeech: 'adj.',
-        example: 'English is the predominant language in business.',
-        difficulty: 5
+        example_sentence: 'English is the predominant language in business.',
+        grade_level: GRADE_LEVELS.SENIOR
       }
     ]
-  },
-  college: {
-    id: 4,
-    name: '大学英语词汇',
-    level: 'college',
-    description: '适合大学生的学术英语词汇',
-    totalWords: 500,
-    words: [
-      {
-        id: 301,
-        word: 'ambiguous',
-        meaning: '模糊的；歧义的',
-        phonetic: '/æmˈbɪɡjuəs/',
-        partOfSpeech: 'adj.',
-        example: 'The instructions were ambiguous and confusing.',
-        difficulty: 5
-      },
-      {
-        id: 302,
-        word: 'circumstantial',
-        meaning: '详细的；按情况而定的',
-        phonetic: '/ˌsɜːrkəmˈstænʃəl/',
-        partOfSpeech: 'adj.',
-        example: 'The evidence was only circumstantial.',
-        difficulty: 5
-      },
-      {
-        id: 303,
-        word: 'diligent',
-        meaning: '勤奋的；勤勉的',
-        phonetic: '/ˈdɪlɪdʒənt/',
-        partOfSpeech: 'adj.',
-        example: 'She is a diligent student who always completes her homework.',
-        difficulty: 4
-      },
-      {
-        id: 304,
-        word: 'elaborate',
-        meaning: '精细的；详细的',
-        phonetic: '/ɪˈlæbərət/',
-        partOfSpeech: 'adj.',
-        example: 'The plan was too elaborate to implement easily.',
-        difficulty: 4
-      },
-      {
-        id: 305,
-        word: 'fundamental',
-        meaning: '基本的；根本的',
-        phonetic: '/ˌfʌndəˈmentəl/',
-        partOfSpeech: 'adj.',
-        example: 'Reading is a fundamental skill for education.',
-        difficulty: 4
-      }
-    ]
+
+    // 创建单词对象并插入数据库
+    for (const wordData of legacyWords) {
+      const word = new (await import('@/db/models.js')).Word(wordData)
+      await wordDAO.create(word)
+    }
+
+    console.log('词汇数据初始化完成')
+  } catch (error) {
+    console.error('初始化词汇数据失败:', error)
+    throw error
   }
-}
-
-export const getWordsByLevel = (level) => {
-  return vocabularyBooks[level]?.words || []
-}
-
-export const getWordById = (wordId) => {
-  for (const book of Object.values(vocabularyBooks)) {
-    const word = book.words.find(w => w.id === wordId)
-    if (word) return word
-  }
-  return null
-}
-
-export const getAllWords = () => {
-  return Object.values(vocabularyBooks).flatMap(book => book.words)
-}
-
-export const getWordsByDifficulty = (minDifficulty, maxDifficulty) => {
-  return getAllWords().filter(word => 
-    word.difficulty >= minDifficulty && word.difficulty <= maxDifficulty
-  )
 }
