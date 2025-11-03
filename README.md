@@ -1,172 +1,112 @@
-# 英语学习应用 (English Learning App)
+# 英语学习应用
 
-一个类似多邻国的Vue 3英语学习应用，支持科学的间隔重复记忆系统(SRS)。
+基于Vue 3 + TypeScript + Vite + Pinia + Vue Router + Tailwind CSS构建的英语学习应用，类似多邻国的功能。
 
-## 🌟 主要功能
+## 功能特点
 
-- **间隔重复记忆系统**: 基于SM-2算法的智能复习调度
-- **多样化练习模式**: 
-  - 单词卡片练习（选义、拼写、听音、填空）
-    - 句子练习（听写、排序、翻译）
-    - **分级词书**: 小学、初中、高中、大学四级词书
-    - **进度追踪**: 详细的学习统计和图表分析
-    - **PWA支持**: 可安装为桌面或移动应用，支持离线使用
-    - **成就系统**: 激励学习的徽章和等级系统
-    - **个性化设置**: 可自定义学习目标和策略
-    - **响应式设计**: 完美适配桌面端和移动端
+- **间隔重复记忆系统(SRS)** - 基于SM-2算法智能安排复习
+- **多样化练习模式** - 单词卡片、拼写练习、选择题等
+- **分级词书** - 小学、初中、高中、四级词汇
+- **进度追踪** - 学习统计和图表展示
+- **PWA支持** - 可安装为桌面/移动应用
+- **成就系统** - 徽章和等级激励
+- **响应式设计** - 支持移动端和桌面端
 
-    ## 🛠️ 技术栈
+## 技术栈
 
-    - **前端框架**: Vue 3 + Composition API
-    - **状态管理**: Pinia
-    - **路由**: Vue Router 4
-    - **样式**: Tailwind CSS
-    - **图表**: Chart.js
-    - **构建工具**: Vite
-    - **PWA**: Service Worker + Web App Manifest
-    - **国际化**: Vue I18n
+- **前端框架**: Vue 3 + TypeScript
+- **构建工具**: Vite
+- **状态管理**: Pinia
+- **路由**: Vue Router
+- **样式**: Tailwind CSS
+- **PWA**: VitePWA
+- **数据存储**: 本地存储 (可扩展为PostgreSQL/Neon)
 
-    ## 📱 功能演示
+## 项目结构
 
-    ### 首页
-    - 显示学习统计（已学单词、连续天数、当前等级）
-    - 今日学习进度
-    - 快速开始练习入口
+```
+src/
+├──components/     # 可复用组件
+│  └──learning/   # 学习相关组件
+├──views/         # 页面组件
+├──stores/        # Pinia状态管理
+├──router/        # 路由配置
+├──utils/         # 工具函数(SRS算法等)
+├──assets/        # 静态资源
+└──types/         # TypeScript类型定义
+```
 
-    ### 练习页面
-    - 选择练习类型（单词或句子）
-    - 多种练习模式
-    - 智能难度调节
-    - 实时反馈
+## 快速开始
 
-    ### 进度页面
-    - 学习统计图表
-    - 词书学习进度
-    - 成就徽章展示
-    - 本周学习数据
+### 安装依赖
 
-    ### 设置页面
-    - 每日目标设置
-    - 复习策略配置
-    - 音频设置
-    - 词书选择
-    - 数据导出/导入
+```sh
+npm install
+```
 
-    ## 🚀 快速开始
+### 开发模式
 
-    ### 环境要求
-    - Node.js 18+ 
-    - npm 或 yarn
+```sh
+npm run dev
+```
 
-    ### 安装依赖
-    ```bash
-    npm install
-    ```
+### 构建生产版本
 
-    ### 开发模式
-    ```bash
-    npm run dev
-    ```
+```sh
+npm run build
+```
 
-    ### 构建生产版本
-    ```bash
-    npm run build
-    ```
+### 预览生产版本
 
-    ### 预览构建结果
-    ```bash
-    npm run preview
-    ```
+```sh
+npm run preview
+```
 
-    ## 📦 部署指南
+## 部署
 
-    ### Vercel部署（推荐）
+### Vercel部署
 
-    1. 将代码推送到GitHub/GitLab
-    2. 在 [Vercel](https://vercel.com) 导入项目
-    3. 选择仓库并部署
-    4. 自动部署成功
+1. 将代码推送到GitHub仓库
+2. 在Vercel中导入项目
+3. 配置环境变量 (可选)
+4. 自动部署完成
 
-    ### Cloudflare Pages部署
+### 环境变量
 
-    1. 将代码推送到GitHub/GitLab  
-    2. 在 [Cloudflare Pages](https://pages.cloudflare.com) 创建新项目
-    3. 连接仓库并设置构建配置：
-       - 构建命令: `npm run build`
-          - 构建输出目录: `dist`
-          4. 部署完成
+创建`.env`文件并配置以下变量：
 
-          ### Netlify部署
+```env
+# 数据库连接字符串 (Neon PostgreSQL)
+VITE_DATABASE_URL=postgresql://username:password@host/database?sslmode=require
 
-          1. 将代码推送到GitHub/GitLab
-          2. 在 [Netlify](https://netlify.com) 创建新站点
-          3. 连接仓库并配置：
-             - 构建命令: `npm run build`
-                - 发布目录: `dist`
-                4. 部署完成
+# API基础URL
+VITE_API_BASE_URL=https://your-api.vercel.app
 
-                ## 📱 PWA功能
+# 应用标题
+VITE_APP_TITLE=英语学习应用
+```
 
-                应用支持PWA（渐进式Web应用）功能：
+## 开发指南
 
-                - **离线使用**: 核心功能可以在离线环境下使用
-                - **添加到桌面**: 可以安装到手机桌面或电脑桌面
-                - **推送通知**: 可以设置学习提醒（未来版本）
+### 添加新的练习模式
 
-                在支持的浏览器中，访问网站时会显示"添加到主屏幕"的提示。
+1. 在`src/components/learning/`中创建新组件
+2. 在`src/views/LearnView.vue`中注册组件
+3. 在`src/types/index.ts`中添加相关类型定义
 
-                ## 🎯 学习算法
+### 扩展词库
 
-                应用使用了基于SM-2算法的间隔重复记忆系统：
+1. 在`src/utils/database.ts`中的`getMockWords`函数添加更多单词
+2. 或者实现从API/数据库加载单词的功能
 
-                1. **新单词**: 立即显示并要求回忆
-                2. **复习间隔**: 根据记忆效果调整下次复习时间
-                3. **遗忘曲线**: 遵循艾宾浩斯遗忘曲线进行复习
-                4. **难度调节**: 根据答题情况动态调整单词难度
+### 自定义SRS算法
 
-                ## 📊 数据管理
+在`src/utils/srs.ts`中修改SM2算法参数或实现其他算法
 
-                - **本地存储**: 学习进度保存在浏览器本地存储
-                - **数据导出**: 支持导出学习数据为JSON格式
-                - **数据导入**: 支持从备份文件恢复学习进度
-                - **隐私保护**: 所有数据仅存储在用户设备上
+## 贡献
 
-                ## 🛠️ 开发指南
+欢迎提交Issue和Pull Request来改进这个项目。
 
-                ### 项目结构
-                ```
-                src/
-                ├── assets/          # 静态资源
-                ├── components/      # Vue组件
-                ├── composables/     # Vue组合式函数
-                ├── data/           # 静态数据
-                ├── router/         # 路由配置
-                ├── stores/         # Pinia状态管理
-                ├── views/          # 页面组件
-                └── main.js         # 应用入口
-                ```
+## 许可证
 
-                ### 添加新功能
-
-                1. **新练习类型**: 在 `src/components/` 创建新组件
-                2. **新页面**: 在 `src/views/` 创建新页面并配置路由
-                3. **新数据**: 在 `src/data/` 添加词汇或句子数据
-                4. **新设置**: 在 `src/stores/` 更新设置store
-
-                ## 🤝 贡献指南
-
-                欢迎提交Issue和Pull Request来改进这个项目！
-
-                ## 📄 许可证
-
-                MIT License
-
-                ## 🙏 致谢
-
-                - 感谢Vue.js社区提供的优秀框架
-                - 感谢多邻国应用的启发
-                - 感谢所有开源库的开发者们
-
-                ---
-
-                **开始你的英语学习之旅吧！** 🚀
+MIT License

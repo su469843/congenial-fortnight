@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
   const user = ref({
-    id: null,
+    id: null as number | null,
     name: 'Guest',
     level: 1,
     experience: 0,
@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', () => {
     return (user.value.experience / expNeeded) * 100
   })
 
-  const addExperience = (amount) => {
+  const addExperience = (amount: number) => {
     user.value.experience += amount
     const expNeeded = user.value.level * 100
     if (user.value.experience >= expNeeded) {
